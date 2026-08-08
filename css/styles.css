@@ -178,7 +178,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* Icon-only contact button + brand truncate on mobile */
+/* Icon-only contact button; brand name wraps fully on mobile */
 @media (max-width: 700px) {
   .contact-nav-btn {
     padding: 10px;
@@ -192,15 +192,23 @@ body {
     display: none;
   }
 
-  .brand-name {
-    font-size: 0.88rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: min(42vw, 160px);
-  }
-
   .brand-logo {
     gap: 8px;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .brand-name {
+    font-size: 0.82rem;
+    line-height: 1.2;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    max-width: none;
+  }
+
+  .nav-actions {
+    flex-shrink: 0;
   }
 }
 
@@ -1879,14 +1887,18 @@ body.modal-open {
   min-height: 0;
   height: auto;
   max-height: calc(94vh - 88px);
-  align-items: stretch;
-  overflow: hidden;
+  align-items: start;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .records-col-divider {
   background: var(--glass-border);
   width: 1px;
   align-self: stretch;
+  min-height: 100%;
 }
 
 .records-col-divider--reports {
@@ -1894,16 +1906,13 @@ body.modal-open {
 }
 
 .records-column {
-  padding: 20px 20px 28px;
+  padding: 16px 20px 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
+  gap: 10px;
+  overflow: visible;
   height: auto;
-  max-height: calc(94vh - 88px);
+  max-height: none;
   min-height: 0;
   background: #ffffff;
 }
@@ -1945,16 +1954,19 @@ body.modal-open {
   transform: rotate(-90deg);
 }
 
-.records-foldable.collapsed .records-col-header,
-.records-foldable.collapsed .record-gold-card,
-.records-foldable.collapsed .record-tier-row {
-  display: none;
+/* Collapsed = header only, no leftover empty space */
+.records-foldable.collapsed {
+  gap: 0;
+}
+
+.records-foldable.collapsed> :not(.records-fold-toggle) {
+  display: none !important;
 }
 
 .records-stacked-section+.records-stacked-section {
-  margin-top: 18px;
-  padding-top: 18px;
-  border-top: 1px solid var(--glass-border);
+  margin-top: 10px;
+  padding-top: 0;
+  border-top: none;
 }
 
 .records-col-header {
@@ -2100,6 +2112,7 @@ body.modal-open {
   overflow-x: hidden;
   overflow-y: auto;
   max-width: 260px;
+  align-self: start;
 }
 
 .reports-header {
@@ -2308,6 +2321,7 @@ body.modal-open {
     background: var(--bg-primary);
     overflow: visible !important;
     height: auto !important;
+    max-height: none !important;
     min-height: 0;
   }
 
