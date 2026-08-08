@@ -62,6 +62,11 @@
 
     <!-- Hero Banner -->
     <header class="hero-section">
+      <div class="hero-gallery" aria-hidden="true">
+        <img src="assets/house/poolsideview.png" alt="" class="hero-gallery__img">
+        <img src="assets/house/sunsetbalcony.png" alt="" class="hero-gallery__img">
+        <img src="assets/house/riverview.png" alt="" class="hero-gallery__img">
+      </div>
       <div class="hero-overlay">
         <div class="hero-badge">
           <i class="fa-solid fa-fish" aria-hidden="true"></i>
@@ -791,17 +796,15 @@
       <div class="modal-body records-leaderboard-body">
         <div class="records-column" id="records-cat-col"></div>
         <div class="records-col-divider" role="separator"></div>
-        <div class="records-column" id="records-carp-col"></div>
-      </div>
-      <!-- Annual Catch Reports Accordion -->
-      <div class="catch-reports-section">
-        <h4 class="reports-header" id="btn-toggle-reports" role="button" aria-expanded="false" tabindex="0">
-          <span><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span id="annual-reports-title">Annual Catch
-              Reports</span></span>
-          <i class="fa-solid fa-chevron-down" id="reports-chevron" aria-hidden="true"></i>
-        </h4>
-        <div class="reports-accordion-wrapper" id="reports-accordion-wrapper">
-          <div class="accordion-container" id="reports-accordion-container"></div>
+        <div class="records-col-divider records-col-divider--reports" role="separator"></div>
+        <div class="catch-reports-section">
+          <h4 class="reports-header" id="btn-toggle-reports">
+            <span><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span id="annual-reports-title">Annual Catch
+                Reports</span></span>
+          </h4>
+          <div class="reports-accordion-wrapper" id="reports-accordion-wrapper">
+            <div class="accordion-container" id="reports-accordion-container"></div>
+          </div>
         </div>
       </div>
     </div>

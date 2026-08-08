@@ -402,15 +402,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Render Catch Records — two-column leaderboard
   function renderRecordsList() {
     const catCol  = document.getElementById('records-cat-col');
-    const carpCol = document.getElementById('records-carp-col');
-    if (!catCol || !carpCol) return;
+    if (!catCol) return;
 
     const cats  = PORTAL_DATA.catchRecords.filter(r => r.species === 'Wels Catfish');
     const carps = PORTAL_DATA.catchRecords.filter(r => r.species === 'Common Carp');
 
     const t = PORTAL_DATA.translations[currentLang];
-    catCol.innerHTML  = buildColumn(cats,  '#10b981', t.topCatfish);
-    carpCol.innerHTML = buildColumn(carps, '#f59e0b', t.topCarp);
+    catCol.innerHTML  = buildStackedColumns(cats, carps, t.topCatfish, t.topCarp);
+    setupFoldableRecords();
   }
 
   function buildColumn(records, accentColor, heading) {
@@ -422,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // #1 — real photo + name + weight + angler
         html += `
           <div class="record-gold-card">
-            <img src="${rec.image}" alt="${rec.name}" loading="lazy">
+            <img src="${rec.image}" alt="${rec.name}" class="${rec.species === 'Wels Catfish' ? 'record-gold-card__catfish' : ''}" loading="lazy">
             <div class="record-gold-info">
               <div class="medal-row">
                 <span class="medal">🥇</span>
@@ -447,6 +446,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     return html;
+  }
+
+  function buildStackedColumns(cats, carps, catHeading, carpHeading) {
+    return `
+      <div class="records-stacked-section records-foldable" data-foldable-section="catfish">
+        <button class="records-fold-toggle" type="button" aria-expanded="true">
+          <span>${catHeading}</span>
+          <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+        </button>
+        ${buildColumn(cats, '#10b981', catHeading)}
+      </div>
+      <div class="records-stacked-section records-foldable records-stacked-section--carp" data-foldable-section="carp">
+        <button class="records-fold-toggle" type="button" aria-expanded="true">
+          <span>${carpHeading}</span>
+          <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+        </button>
+        ${buildColumn(carps, '#f59e0b', carpHeading)}
+      </div>
+    `;
+  }
+
+  function setupFoldableRecords() {
+    document.querySelectorAll('.records-fold-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const section = btn.closest('.records-foldable');
+        if (!section) return;
+        const isCollapsed = section.classList.toggle('collapsed');
+        btn.setAttribute('aria-expanded', String(!isCollapsed));
+      });
+    });
   }
 
   // Render Annual Catch Reports Accordion
@@ -738,7 +767,6 @@ document.addEventListener('DOMContentLoaded', () => {
       recordsModal.classList.remove('active');
       // Reset reports accordion state on close
       document.getElementById('reports-accordion-wrapper').classList.remove('open');
-      document.getElementById('btn-toggle-reports').classList.remove('open');
     });
     recordsModal.addEventListener('click', (e) => {
       if (e.target === recordsModal) recordsModal.classList.remove('active');
@@ -781,14 +809,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderVillaCarouselSlide(villaCarouselIndex);
       });
     }
-
-    // Annual Reports Main Toggle
-    document.getElementById('btn-toggle-reports').addEventListener('click', (e) => {
-      const header = e.currentTarget;
-      const wrapper = document.getElementById('reports-accordion-wrapper');
-      header.classList.toggle('open');
-      wrapper.classList.toggle('open');
-    });
 
     // POI Hub Modal Close
     poiHubClose.addEventListener('click', () => {
