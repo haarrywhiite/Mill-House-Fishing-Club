@@ -401,14 +401,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Render Catch Records — two-column leaderboard
   function renderRecordsList() {
-    const catCol  = document.getElementById('records-cat-col');
+    const catCol = document.getElementById('records-cat-col');
     if (!catCol) return;
 
-    const cats  = PORTAL_DATA.catchRecords.filter(r => r.species === 'Wels Catfish');
+    const cats = PORTAL_DATA.catchRecords.filter(r => r.species === 'Wels Catfish');
     const carps = PORTAL_DATA.catchRecords.filter(r => r.species === 'Common Carp');
 
     const t = PORTAL_DATA.translations[currentLang];
-    catCol.innerHTML  = buildStackedColumns(cats, carps, t.topCatfish, t.topCarp);
+    catCol.innerHTML = buildStackedColumns(cats, carps, t.topCatfish, t.topCarp);
     setupFoldableRecords();
   }
 
@@ -467,13 +467,49 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
+  function isRecordsMobile() {
+    return window.matchMedia('(max-width: 820px)').matches;
+  }
+
+  function setRecordsSectionCollapsed(section, collapsed) {
+    if (!section) return;
+    section.classList.toggle('collapsed', collapsed);
+    const btn = section.querySelector('.records-fold-toggle');
+    if (btn) btn.setAttribute('aria-expanded', String(!collapsed));
+  }
+
+  function collapseAllFishSections() {
+    document.querySelectorAll('.records-foldable').forEach(section => {
+      setRecordsSectionCollapsed(section, true);
+    });
+  }
+
   function setupFoldableRecords() {
     document.querySelectorAll('.records-fold-toggle').forEach(btn => {
       btn.addEventListener('click', () => {
         const section = btn.closest('.records-foldable');
         if (!section) return;
-        const isCollapsed = section.classList.toggle('collapsed');
-        btn.setAttribute('aria-expanded', String(!isCollapsed));
+        const mobile = isRecordsMobile();
+        const willExpand = section.classList.contains('collapsed');
+
+        if (mobile) {
+          // Accordion: only one of catfish/carp open at a time
+          document.querySelectorAll('.records-foldable').forEach(other => {
+            if (other !== section) setRecordsSectionCollapsed(other, true);
+          });
+          setRecordsSectionCollapsed(section, !willExpand);
+
+          // Opening a fish section folds Annual Catch Reports
+          if (willExpand) {
+            const reportsWrapper = document.getElementById('reports-accordion-wrapper');
+            const reportsToggle = document.getElementById('btn-toggle-reports');
+            if (reportsWrapper) reportsWrapper.classList.remove('open');
+            if (reportsToggle) reportsToggle.setAttribute('aria-expanded', 'false');
+          }
+        } else {
+          const isCollapsed = section.classList.toggle('collapsed');
+          btn.setAttribute('aria-expanded', String(!isCollapsed));
+        }
       });
     });
   }
@@ -482,13 +518,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderAnnualReports() {
     const container = document.getElementById('reports-accordion-container');
     if (!container || !PORTAL_DATA.annualReports) return;
-    
+
     container.innerHTML = '';
-    
+
     PORTAL_DATA.annualReports.forEach((report, index) => {
       const item = document.createElement('div');
       item.className = 'annual-report-item';
-      
+
       item.innerHTML = `
         <div class="annual-report-title">
           <span>${report.year} ${currentLang === 'ca' ? 'Informe de captures' : currentLang === 'es' ? 'Informe de capturas' : 'Catch Report'}</span>
@@ -498,7 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ${localizeReportContent(report.content, report.year)}
         </div>
       `;
-      
+
       // Individual accordion item toggle
       item.querySelector('.annual-report-title').addEventListener('click', () => {
         const isActive = item.classList.contains('active');
@@ -508,7 +544,7 @@ document.addEventListener('DOMContentLoaded', () => {
           item.classList.add('active');
         }
       });
-      
+
       container.appendChild(item);
     });
   }
@@ -545,6 +581,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!selectorContainer) return;
 
     selectorContainer.innerHTML = '';
+    const isMobile = window.matchMedia('(max-width: 820px)').matches;
 
     PORTAL_DATA.poisList.filter(poi => !poi.hidden).forEach(poi => {
       const itemEl = document.createElement('div');
@@ -553,15 +590,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const title = poi.title[currentLang] || poi.title.en;
 
-      itemEl.innerHTML = `
-        <img src="${poi.image}" class="poi-item-thumb" alt="${title}">
-        <div>
-          <h5 style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary); line-height: 1.25;">${title}</h5>
-          <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 3px;">${localizePoiCategory(poi.category)}</p>
-        </div>
-      `;
+      if (isMobile) {
+        itemEl.classList.add('poi-item-card--mobile');
+        const isActive = poi.id === activePoiId;
+        itemEl.innerHTML = `
+          <button type="button" class="poi-item-trigger" aria-expanded="${isActive ? 'true' : 'false'}">
+            <span class="poi-item-trigger__left">
+              <img src="${poi.image}" class="poi-item-thumb" alt="${title}">
+              <span>
+                <h5 style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary); line-height: 1.25;">${title}</h5>
+                <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 3px;">${localizePoiCategory(poi.category)}</p>
+              </span>
+            </span>
+            <i class="fa-solid fa-chevron-down poi-item-trigger__chev" aria-hidden="true"></i>
+          </button>
+          <div class="poi-item-details" ${isActive ? '' : 'hidden'}>
+            <img src="${poi.image}" class="poi-active-img poi-active-img--inline" alt="${title}">
+            <h5 class="poi-inline-title">${title}</h5>
+            <p class="poi-detail-desc">${poi.description[currentLang] || poi.description.en}</p>
+            <div class="daves-tip-box" style="margin-top:12px;">
+              <h4><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Dave's Tip</h4>
+              <p>${poi.tip || "Enjoy exploring this local spot!"}</p>
+            </div>
+            <div class="details-grid">
+              <div class="detail-item"><strong>${poi.distance}</strong></div>
+              <div class="detail-item"><strong>${poi.duration}</strong></div>
+              <div class="detail-item"><strong>${poi.recommended}</strong></div>
+            </div>
+            <a href="${poi.mapUrl}" target="_blank" rel="noopener" class="btn-primary btn-full">Open Map</a>
+          </div>
+        `;
+      } else {
+        itemEl.innerHTML = `
+          <img src="${poi.image}" class="poi-item-thumb" alt="${title}">
+          <div>
+            <h5 style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary); line-height: 1.25;">${title}</h5>
+            <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 3px;">${localizePoiCategory(poi.category)}</p>
+          </div>
+        `;
+      }
 
       itemEl.addEventListener('click', () => {
+        if (isMobile) {
+          const details = itemEl.querySelector('.poi-item-details');
+          const trigger = itemEl.querySelector('.poi-item-trigger');
+          const isOpen = itemEl.classList.contains('active');
+          document.querySelectorAll('.poi-item-card--mobile').forEach(card => {
+            card.classList.remove('active');
+            const d = card.querySelector('.poi-item-details');
+            const t = card.querySelector('.poi-item-trigger');
+            if (d) d.hidden = true;
+            if (t) t.setAttribute('aria-expanded', 'false');
+          });
+          if (!isOpen) {
+            itemEl.classList.add('active');
+            if (details) details.hidden = false;
+            if (trigger) trigger.setAttribute('aria-expanded', 'true');
+            itemEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+          return;
+        }
         activePoiId = poi.id;
         document.querySelectorAll('.poi-item-card').forEach(c => c.classList.remove('active'));
         itemEl.classList.add('active');
@@ -595,7 +683,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.09&longitude=0.65&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FMadrid');
       const data = await res.json();
-      
+
       const current = data.current;
       const daily = data.daily;
 
@@ -633,10 +721,10 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (current.weather_code < 95) iconEl.className = 'fa-solid fa-cloud-showers-heavy';
         else iconEl.className = 'fa-solid fa-bolt';
       }
-      
+
       const widgetIcon = document.getElementById('weather-widget-icon');
       if (widgetIcon && iconEl) {
-         widgetIcon.className = iconEl.className;
+        widgetIcon.className = iconEl.className;
       }
 
       // 3. Render Chart.js
@@ -762,15 +850,51 @@ document.addEventListener('DOMContentLoaded', () => {
     // Records widget open
     btnOpenRecords.addEventListener('click', () => {
       recordsModal.classList.add('active');
+      const reportsWrapper = document.getElementById('reports-accordion-wrapper');
+      const reportsToggle = document.getElementById('btn-toggle-reports');
+      if (isRecordsMobile()) {
+        // Mobile: show catfish records first; fold reports and carp
+        if (reportsWrapper) reportsWrapper.classList.remove('open');
+        if (reportsToggle) reportsToggle.setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('.records-foldable').forEach(section => {
+          const isCatfish = section.getAttribute('data-foldable-section') === 'catfish';
+          setRecordsSectionCollapsed(section, !isCatfish);
+        });
+      } else {
+        if (reportsWrapper) reportsWrapper.classList.add('open');
+        if (reportsToggle) reportsToggle.setAttribute('aria-expanded', 'true');
+        document.querySelectorAll('.records-foldable').forEach(section => {
+          setRecordsSectionCollapsed(section, false);
+        });
+      }
     });
     recordsModalClose.addEventListener('click', () => {
       recordsModal.classList.remove('active');
-      // Reset reports accordion state on close
-      document.getElementById('reports-accordion-wrapper').classList.remove('open');
     });
     recordsModal.addEventListener('click', (e) => {
       if (e.target === recordsModal) recordsModal.classList.remove('active');
     });
+
+    // Annual Catch Reports section toggle (mainly for mobile)
+    const btnToggleReports = document.getElementById('btn-toggle-reports');
+    const reportsAccordionWrapper = document.getElementById('reports-accordion-wrapper');
+    if (btnToggleReports && reportsAccordionWrapper) {
+      const toggleReportsSection = () => {
+        const isOpen = reportsAccordionWrapper.classList.toggle('open');
+        btnToggleReports.setAttribute('aria-expanded', String(isOpen));
+        // On mobile, unfolding reports collapses catfish & carp sections
+        if (isRecordsMobile() && isOpen) {
+          collapseAllFishSections();
+        }
+      };
+      btnToggleReports.addEventListener('click', toggleReportsSection);
+      btnToggleReports.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleReportsSection();
+        }
+      });
+    }
 
     // Weather widget open
     if (btnOpenWeather) {
@@ -859,6 +983,24 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    // Jane's Menu foldable sections (mobile)
+    document.querySelectorAll('.menu-section-header').forEach(header => {
+      const toggleMenuSection = () => {
+        if (!window.matchMedia('(max-width: 820px)').matches) return;
+        const item = header.closest('.menu-accordion-item');
+        if (!item) return;
+        item.classList.toggle('active');
+        header.setAttribute('aria-expanded', String(item.classList.contains('active')));
+      };
+      header.addEventListener('click', toggleMenuSection);
+      header.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleMenuSection();
+        }
+      });
+    });
+
     // Print QR Stand Button
     const printBtn = document.getElementById('btn-print-qr');
     if (printBtn) {
@@ -895,7 +1037,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const qrContainer = document.getElementById('qrcode');
     if (!qrContainer) return;
     qrContainer.innerHTML = '';
-    
+
     const qrUrl = 'https://haarrywhiite.github.io/MillHouseFishingClub/';
 
     new QRCode(qrContainer, {
