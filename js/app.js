@@ -412,13 +412,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFoldableRecords();
   }
 
-  function buildColumn(records, accentColor, heading) {
+  function buildColumn(records) {
     const medals = ['🥇', '🥈', '🥉'];
-    let html = `<p class="records-col-header" style="color:${accentColor};">${heading}</p>`;
+    let html = '';
 
     records.forEach((rec, i) => {
       if (i === 0) {
-        // #1 — real photo + name + weight + angler
+        // #1 — photo + record name + weight + angler (no duplicate section header)
         html += `
           <div class="record-gold-card">
             <img src="${rec.image}" alt="${rec.name}" class="${rec.species === 'Wels Catfish' ? 'record-gold-card__catfish' : ''}" loading="lazy">
@@ -455,14 +455,14 @@ document.addEventListener('DOMContentLoaded', () => {
           <span>${catHeading}</span>
           <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
         </button>
-        ${buildColumn(cats, '#10b981', catHeading)}
+        ${buildColumn(cats)}
       </div>
-      <div class="records-stacked-section records-foldable records-stacked-section--carp" data-foldable-section="carp">
-        <button class="records-fold-toggle" type="button" aria-expanded="true">
+      <div class="records-stacked-section records-foldable records-stacked-section--carp collapsed" data-foldable-section="carp">
+        <button class="records-fold-toggle" type="button" aria-expanded="false">
           <span>${carpHeading}</span>
           <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
         </button>
-        ${buildColumn(carps, '#f59e0b', carpHeading)}
+        ${buildColumn(carps)}
       </div>
     `;
   }
@@ -489,26 +489,20 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.addEventListener('click', () => {
         const section = btn.closest('.records-foldable');
         if (!section) return;
-        const mobile = isRecordsMobile();
         const willExpand = section.classList.contains('collapsed');
 
-        if (mobile) {
-          // Accordion: only one of catfish/carp open at a time
-          document.querySelectorAll('.records-foldable').forEach(other => {
-            if (other !== section) setRecordsSectionCollapsed(other, true);
-          });
-          setRecordsSectionCollapsed(section, !willExpand);
+        // Accordion on all screen sizes: only one of catfish/carp open at a time
+        document.querySelectorAll('.records-foldable').forEach(other => {
+          if (other !== section) setRecordsSectionCollapsed(other, true);
+        });
+        setRecordsSectionCollapsed(section, !willExpand);
 
-          // Opening a fish section folds Annual Catch Reports
-          if (willExpand) {
-            const reportsWrapper = document.getElementById('reports-accordion-wrapper');
-            const reportsToggle = document.getElementById('btn-toggle-reports');
-            if (reportsWrapper) reportsWrapper.classList.remove('open');
-            if (reportsToggle) reportsToggle.setAttribute('aria-expanded', 'false');
-          }
-        } else {
-          const isCollapsed = section.classList.toggle('collapsed');
-          btn.setAttribute('aria-expanded', String(!isCollapsed));
+        // On mobile, opening a fish section also folds Annual Catch Reports
+        if (isRecordsMobile() && willExpand) {
+          const reportsWrapper = document.getElementById('reports-accordion-wrapper');
+          const reportsToggle = document.getElementById('btn-toggle-reports');
+          if (reportsWrapper) reportsWrapper.classList.remove('open');
+          if (reportsToggle) reportsToggle.setAttribute('aria-expanded', 'false');
         }
       });
     });
@@ -852,20 +846,17 @@ document.addEventListener('DOMContentLoaded', () => {
       recordsModal.classList.add('active');
       const reportsWrapper = document.getElementById('reports-accordion-wrapper');
       const reportsToggle = document.getElementById('btn-toggle-reports');
+      // Always start with catfish open and carp closed (only one open at a time)
+      document.querySelectorAll('.records-foldable').forEach(section => {
+        const isCatfish = section.getAttribute('data-foldable-section') === 'catfish';
+        setRecordsSectionCollapsed(section, !isCatfish);
+      });
       if (isRecordsMobile()) {
-        // Mobile: show catfish records first; fold reports and carp
         if (reportsWrapper) reportsWrapper.classList.remove('open');
         if (reportsToggle) reportsToggle.setAttribute('aria-expanded', 'false');
-        document.querySelectorAll('.records-foldable').forEach(section => {
-          const isCatfish = section.getAttribute('data-foldable-section') === 'catfish';
-          setRecordsSectionCollapsed(section, !isCatfish);
-        });
       } else {
         if (reportsWrapper) reportsWrapper.classList.add('open');
         if (reportsToggle) reportsToggle.setAttribute('aria-expanded', 'true');
-        document.querySelectorAll('.records-foldable').forEach(section => {
-          setRecordsSectionCollapsed(section, false);
-        });
       }
     });
     recordsModalClose.addEventListener('click', () => {
