@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // DOM Element References
   const cardsGrid = document.getElementById('cards-grid');
-  const langBtns = document.querySelectorAll('.lang-btn');
+  const langSelect = document.getElementById('lang-select');
   const toast = document.getElementById('toast-notification');
   const toastText = document.getElementById('toast-text');
 
@@ -23,6 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnOpenRecords = document.getElementById('btn-open-records');
   let activeRecordId = 'cat-1';
 
+  const menuModal = document.getElementById('menu-modal');
+  const menuModalClose = document.getElementById('menu-modal-close');
+  const aboutModal = document.getElementById('about-modal');
+  const aboutModalClose = document.getElementById('about-modal-close');
+  const contactModal = document.getElementById('contact-modal');
+  const contactModalClose = document.getElementById('contact-modal-close');
+  const btnOpenContact = document.getElementById('btn-open-contact');
+
   const weatherModal = document.getElementById('weather-modal');
   const weatherModalClose = document.getElementById('weather-modal-close');
   const btnOpenWeather = document.getElementById('btn-open-weather');
@@ -36,11 +44,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const villaCarouselText = document.getElementById('villa-carousel-text');
 
   const villaCarouselSlides = [
-    { src: 'assets/house/house.png', alt: 'River House exterior' },
-    { src: 'assets/house/house2.png', alt: 'River House villa' },
-    { src: 'assets/house/house3.png', alt: 'River House view' },
-    { src: 'assets/house/riverview.png', alt: 'River view from River House' },
-    { src: 'assets/house/pool.png', alt: 'Private pool at River House' }
+    { src: 'assets/house/house.png', alt: 'Finca Alessandra exterior' },
+    { src: 'assets/house/house2.png', alt: 'Finca Alessandra villa' },
+    { src: 'assets/house/house3.png', alt: 'Finca Alessandra view' },
+    { src: 'assets/house/pool.png', alt: 'Private pool at Finca Alessandra' },
+    { src: 'assets/house/poolsideview.png', alt: 'Poolside view at Finca Alessandra' },
+    { src: 'assets/house/sunsetbalcony.png', alt: 'Balcony sunset at Finca Alessandra' },
+    { src: 'assets/house/viewtea.png', alt: 'Tea on the balcony at Finca Alessandra' },
+    { src: 'assets/house/kayakview.png', alt: 'Kayak view from the River Ebro' },
+    { src: 'assets/house/rodssunset.png', alt: 'Fishing rods at sunset' },
+    { src: 'assets/house/nightimepoolstars.png', alt: 'Night pool and stars at Finca Alessandra' },
+    { src: 'assets/house/sunset2.png', alt: 'Finca Alessandra sunset view' },
+    { src: 'assets/house/drivehousepic.png', alt: 'Driveway view of Finca Alessandra' },
+    { src: 'assets/house/vilanight.png', alt: 'Finca Alessandra villa at night' },
+    { src: 'assets/house/riverview.png', alt: 'River view from Finca Alessandra' }
   ];
   let villaCarouselIndex = 0;
 
@@ -59,16 +76,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (savedLang && PORTAL_DATA.translations[savedLang]) {
       currentLang = savedLang;
     }
+    if (langSelect) langSelect.value = currentLang;
   }
 
   function setLanguage(lang) {
     if (!PORTAL_DATA.translations[lang]) return;
     currentLang = lang;
     localStorage.setItem('riverhouse_lang', lang);
-
-    langBtns.forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.lang === lang);
-    });
+    if (langSelect) langSelect.value = lang;
 
     renderUI();
   }
@@ -76,12 +91,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Render UI Components
   function renderUI() {
     const t = PORTAL_DATA.translations[currentLang];
+    if (langSelect) langSelect.value = currentLang;
 
     // Static Strings
     document.getElementById('hero-title').innerText = t.heroTagline;
     document.getElementById('hero-subtitle').innerText = t.heroSubtitle;
-    document.getElementById('btn-hero-official-text').innerText = t.officialSiteBtn;
-    document.getElementById('btn-hero-whatsapp-text').innerText = t.quickWhatsapp;
+    const contactText = document.getElementById('btn-open-contact-text');
+    if (contactText) contactText.innerText = t.contactBtn;
 
     document.getElementById('lbl-weather-title').innerText = t.weatherTitle;
     document.getElementById('live-condition').innerText = t.weatherCondition;
@@ -109,6 +125,18 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('weather-modal-title-text').innerText = t.weatherModalTitle;
     document.getElementById('villa-modal-title').innerHTML = `<i class="fa-solid fa-house" aria-hidden="true"></i> ${t.villaModalTitle}`;
     document.getElementById('villa-modal-subtitle').innerText = t.villaModalSubtitle;
+    const menuTitle = document.getElementById('menu-modal-title');
+    if (menuTitle) menuTitle.innerHTML = `<i class="fa-solid fa-utensils" aria-hidden="true"></i> ${t.menuModalTitle}`;
+    const menuSubtitle = document.getElementById('menu-modal-subtitle');
+    if (menuSubtitle) menuSubtitle.innerText = t.menuModalSubtitle;
+    const aboutTitle = document.getElementById('about-modal-title');
+    if (aboutTitle) aboutTitle.innerHTML = `<i class="fa-solid fa-house-chimney-user" aria-hidden="true"></i> ${t.aboutModalTitle}`;
+    const aboutSubtitle = document.getElementById('about-modal-subtitle');
+    if (aboutSubtitle) aboutSubtitle.innerText = t.aboutModalSubtitle;
+    const contactTitle = document.getElementById('contact-modal-title');
+    if (contactTitle) contactTitle.innerHTML = `<i class="fa-solid fa-comments" aria-hidden="true"></i> ${t.contactModalTitle}`;
+    const contactSubtitle = document.getElementById('contact-modal-subtitle');
+    if (contactSubtitle) contactSubtitle.innerText = t.contactModalSubtitle;
     document.getElementById('weather-condition-label').innerText = t.condition;
     document.getElementById('weather-wind-label').innerText = t.wind;
     document.getElementById('weather-humidity-label').innerText = t.humidity;
@@ -287,6 +315,18 @@ document.addEventListener('DOMContentLoaded', () => {
             <i class="fa-solid fa-phone-volume"></i> ${btnText}
           </button>
         `;
+      } else if (card.actionType === 'openMenuModal') {
+        cardActionHTML = `
+          <button class="card-btn btn-open-menu" data-id="${card.id}">
+            <i class="fa-solid fa-utensils"></i> ${btnText}
+          </button>
+        `;
+      } else if (card.actionType === 'openAboutModal') {
+        cardActionHTML = `
+          <button class="card-btn btn-open-about" data-id="${card.id}">
+            <i class="fa-solid fa-circle-info"></i> ${btnText}
+          </button>
+        `;
       } else if (card.isModal) {
         cardActionHTML = `
           <button class="card-btn btn-open-villa" data-id="${card.id}">
@@ -334,6 +374,21 @@ document.addEventListener('DOMContentLoaded', () => {
         emergencyModal.classList.add('active');
       });
     });
+    document.querySelectorAll('.btn-open-menu').forEach(btn => {
+      btn.addEventListener('click', () => {
+        menuModal.classList.add('active');
+      });
+    });
+    document.querySelectorAll('.btn-open-about').forEach(btn => {
+      btn.addEventListener('click', () => {
+        aboutModal.classList.add('active');
+      });
+    });
+    if (btnOpenContact) {
+      btnOpenContact.addEventListener('click', () => {
+        contactModal.classList.add('active');
+      });
+    }
 
     document.querySelectorAll('.btn-open-villa').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -668,12 +723,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Event Handlers & Interactions
   function setupEventListeners() {
-    // Language Buttons
-    langBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        setLanguage(btn.dataset.lang);
+    if (langSelect) {
+      langSelect.addEventListener('change', () => {
+        setLanguage(langSelect.value);
       });
-    });
+    }
 
 
     // Records widget open
@@ -760,6 +814,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === emergencyModal) emergencyModal.classList.remove('active');
       });
     }
+    if (menuModalClose) menuModalClose.addEventListener('click', () => menuModal.classList.remove('active'));
+    if (menuModal) menuModal.addEventListener('click', (e) => {
+      if (e.target === menuModal) menuModal.classList.remove('active');
+    });
+    if (aboutModalClose) aboutModalClose.addEventListener('click', () => aboutModal.classList.remove('active'));
+    if (aboutModal) aboutModal.addEventListener('click', (e) => {
+      if (e.target === aboutModal) aboutModal.classList.remove('active');
+    });
+    if (contactModalClose) contactModalClose.addEventListener('click', () => contactModal.classList.remove('active'));
+    if (contactModal) contactModal.addEventListener('click', (e) => {
+      if (e.target === contactModal) contactModal.classList.remove('active');
+    });
 
     // Directory Modal Foldable Accordion Header Toggles
     document.querySelectorAll('.directory-cat-header').forEach(header => {
@@ -810,7 +876,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!qrContainer) return;
     qrContainer.innerHTML = '';
     
-    const qrUrl = window.location.href.startsWith('http') ? window.location.href : PORTAL_DATA.business.ogWebsite;
+    const qrUrl = 'https://haarrywhiite.github.io/MillHouseFishingClub/';
 
     new QRCode(qrContainer, {
       text: qrUrl,

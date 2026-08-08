@@ -1,7 +1,7 @@
 // Data Store for River House & Mill House Fishing Club Guest Portal
 const PORTAL_DATA = {
   business: {
-    name: "River House & Mill House Fishing Club",
+    name: "Finca Alessandra & Mill House Fishing Club",
     location: "Móra la Nova, Terres de l'Ebre, Catalonia, Spain",
     phone: "+34 6871 56179",
     phoneClean: "34687156179",
@@ -17,6 +17,7 @@ const PORTAL_DATA = {
       heroTagline: "Mill House Fishing Club",
       heroSubtitle: "Guided Catfishing and Carp Fishing on the River Ebro",
       officialSiteBtn: "Official Fishing Website",
+      contactBtn: "Contact",
       recordCatchesTitle: "Record Catches at the Villa",
       recordCatchesDesc: "Tap to see our top catfish & carp catches",
       quickWhatsapp: "Chat on WhatsApp",
@@ -36,7 +37,7 @@ const PORTAL_DATA = {
       recordCatchTitle: "Club Record Catfish: 149 lbs!",
       recordCatchDesc: "Guided by Dave with 19+ years experience on the Ebro River.",
       qrGeneratorTitle: "Share or Save QR Code",
-      qrGeneratorSubtitle: "Scan or print this QR code to quickly open the River House Portal anytime on your phone.",
+      qrGeneratorSubtitle: "Scan or print this QR code to quickly open the Finca Alessandra Portal anytime on your phone.",
       printQrBtn: "Print QR Code Stand",
       weatherTitle: "Móra la Nova Live Weather",
       weatherCondition: "Sunny & Mild",
@@ -48,7 +49,7 @@ const PORTAL_DATA = {
       supermarkets: "Supermarkets (BonÀrea, Mercadona): 15 min walk in town center",
       poiModalTitle: "Dave's Local POIs Guide",
       poiModalSubtitle: "Select an attraction below to view personal tips, details, and Google Maps directions",
-      directorySubtitle: "Medical services, emergency numbers, shops & Dave's favorite local spots with walking and driving routes from River House",
+      directorySubtitle: "Medical services, emergency numbers, shops & Dave's favorite local spots with walking and driving routes from Finca Alessandra",
       directoryMedical: "Medical & Healthcare",
       directoryEmergency: "Police, Fire & Emergency Numbers",
       directorySupermarkets: "Supermarkets & Food Shops",
@@ -61,9 +62,15 @@ const PORTAL_DATA = {
       topCatfish: "🐟 Top Catfish Catches",
       topCarp: "🎣 Top Carp Catches",
       angler: "Angler",
+      menuModalTitle: "Jane's Menu",
+      menuModalSubtitle: "Homemade dishes from the board in the house.",
+      aboutModalTitle: "About Us & House Notes",
+      aboutModalSubtitle: "House notes, guest guidance and practical advice.",
       weatherModalTitle: "Móra la Nova Weather",
-      villaModalTitle: "River House Villa & Private Pool",
-      villaModalSubtitle: "A look around River House, its river views and private pool.",
+      contactModalTitle: "Contact",
+      contactModalSubtitle: "Quick ways to reach us",
+      villaModalTitle: "Finca Alessandra Villa & Private Pool",
+      villaModalSubtitle: "A look around Finca Alessandra, its river views and private pool.",
       localTime: "Local Time",
       condition: "Condition",
       wind: "Wind",
@@ -73,12 +80,13 @@ const PORTAL_DATA = {
       minTemp: "Min Temp (°C)",
       walk: "Walk",
       drive: "Drive",
-      footerRights: "River House Móra la Nova — Family run for guests & visitors."
+      footerRights: "Finca Alessandra Móra la Nova — Family run for guests & visitors."
     },
     ca: {
-      heroTagline: "Benvinguts a River House Móra la Nova",
+      heroTagline: "Benvinguts a Finca Alessandra Móra la Nova",
       heroSubtitle: "Dirigit per Dave i família. Pesca de silurs al riu Ebre, carpes, consells locals i relax.",
       officialSiteBtn: "Lloc Web Oficial de Pesca",
+      contactBtn: "Contacte",
       quickWhatsapp: "Xat per WhatsApp",
       quickCall: "Truca'ns ara",
       searchPlaceholder: "Cerca atraccions, informació de pesca, serveis...",
@@ -108,7 +116,7 @@ const PORTAL_DATA = {
       supermarkets: "Supermercats (BonÀrea, Mercadona): a 15 min a peu al centre",
       poiModalTitle: "Guia de punts d'interès locals de Dave",
       poiModalSubtitle: "Selecciona una atracció per veure consells personals, detalls i indicacions de Google Maps",
-      directorySubtitle: "Serveis mèdics, números d'emergència, botigues i els llocs locals preferits de Dave amb rutes a peu i en cotxe des de River House",
+      directorySubtitle: "Serveis mèdics, números d'emergència, botigues i els llocs locals preferits de Dave amb rutes a peu i en cotxe des de Finca Alessandra",
       directoryMedical: "Salut i assistència mèdica",
       directoryEmergency: "Policia, bombers i números d'emergència",
       directorySupermarkets: "Supermercats i botigues d'alimentació",
@@ -121,9 +129,15 @@ const PORTAL_DATA = {
       topCatfish: "🐟 Millors captures de silur",
       topCarp: "🎣 Millors captures de carpa",
       angler: "Pescador",
+      menuModalTitle: "Menú de Jane",
+      menuModalSubtitle: "Plats casolans del tauler de la casa.",
+      aboutModalTitle: "Sobre Nosaltres i Notes de la Casa",
+      aboutModalSubtitle: "Notes de la casa, indicacions per als hostes i consells pràctics.",
       weatherModalTitle: "Temps a Móra la Nova",
-      villaModalTitle: "Vila River House i piscina privada",
-      villaModalSubtitle: "Una ullada a River House, les vistes al riu i la piscina privada.",
+      contactModalTitle: "Contacte",
+      contactModalSubtitle: "Formes ràpides de contactar-nos",
+      villaModalTitle: "Vila Finca Alessandra i piscina privada",
+      villaModalSubtitle: "Una ullada a Finca Alessandra, les vistes al riu i la piscina privada.",
       localTime: "Hora local",
       condition: "Condicions",
       wind: "Vent",
@@ -133,12 +147,13 @@ const PORTAL_DATA = {
       minTemp: "Temp. mín. (°C)",
       walk: "A peu",
       drive: "En cotxe",
-      footerRights: "River House Móra la Nova — Familiar per a oients i visitants."
+      footerRights: "Finca Alessandra Móra la Nova — Familiar per a oients i visitants."
     },
     es: {
-      heroTagline: "Bienvenidos a River House Móra la Nova",
+      heroTagline: "Bienvenidos a Finca Alessandra Móra la Nova",
       heroSubtitle: "Dirigido por Dave y familia. Pesca de siluros en el río Ebro, carpas, consejos locales y relax.",
       officialSiteBtn: "Sitio Web Oficial de Pesca",
+      contactBtn: "Contacto",
       quickWhatsapp: "Chat por WhatsApp",
       quickCall: "Llámanos ahora",
       searchPlaceholder: "Buscar atracciones, información de pesca, servicios...",
@@ -168,7 +183,7 @@ const PORTAL_DATA = {
       supermarkets: "Supermercados (BonÀrea, Mercadona): 15 min a pie en el centro",
       poiModalTitle: "Guía de lugares de interés locales de Dave",
       poiModalSubtitle: "Selecciona una atracción para ver consejos personales, detalles e indicaciones de Google Maps",
-      directorySubtitle: "Servicios médicos, números de emergencia, tiendas y los lugares locales favoritos de Dave con rutas a pie y en coche desde River House",
+      directorySubtitle: "Servicios médicos, números de emergencia, tiendas y los lugares locales favoritos de Dave con rutas a pie y en coche desde Finca Alessandra",
       directoryMedical: "Salud y asistencia médica",
       directoryEmergency: "Policía, bomberos y números de emergencia",
       directorySupermarkets: "Supermercados y tiendas de alimentación",
@@ -181,9 +196,15 @@ const PORTAL_DATA = {
       topCatfish: "🐟 Mejores capturas de siluro",
       topCarp: "🎣 Mejores capturas de carpa",
       angler: "Pescador",
+      menuModalTitle: "Menú de Jane",
+      menuModalSubtitle: "Platos caseros del tablero de la casa.",
+      aboutModalTitle: "Sobre Nosotros y Notas de la Casa",
+      aboutModalSubtitle: "Notas de la casa, indicaciones para los huéspedes y consejos prácticos.",
       weatherModalTitle: "Tiempo en Móra la Nova",
-      villaModalTitle: "Villa River House y piscina privada",
-      villaModalSubtitle: "Una mirada a River House, las vistas al río y la piscina privada.",
+      contactModalTitle: "Contacto",
+      contactModalSubtitle: "Formas rápidas de contactarnos",
+      villaModalTitle: "Villa Finca Alessandra y piscina privada",
+      villaModalSubtitle: "Una mirada a Finca Alessandra, las vistas al río y la piscina privada.",
       localTime: "Hora local",
       condition: "Condiciones",
       wind: "Viento",
@@ -193,12 +214,35 @@ const PORTAL_DATA = {
       minTemp: "Temp. mín. (°C)",
       walk: "A pie",
       drive: "En coche",
-      footerRights: "River House Móra la Nova — Familiar para huéspedes y visitantes."
+      footerRights: "Finca Alessandra Móra la Nova — Familiar para huéspedes y visitantes."
     }
   },
 
   // Master Cards Layout
   cards: [
+    {
+      id: "about-us-card",
+      category: "guest",
+      badge: "ABOUT US",
+      badgeClass: "badge-blue",
+      title: {
+        en: "About Us & House Notes",
+        ca: "Sobre Nosaltres i Notes de la Casa",
+        es: "Sobre Nosotros y Notas de la Casa"
+      },
+      description: {
+        en: "Read the friendly house notes, guest guidance and practical advice pinned on the board.",
+        ca: "Llegeix les notes de la casa, les indicacions per als hostes i els consells pràctics del tauler.",
+        es: "Lee las notas de la casa, las indicaciones para los huéspedes y los consejos prácticos del tablón."
+      },
+      image: "assets/house/poolsideview.png",
+      actionType: "openAboutModal",
+      linkText: {
+        en: "View About Us",
+        ca: "Veure sobre nosaltres",
+        es: "Ver sobre nosotros"
+      }
+    },
     {
       id: "official-website",
       category: "website",
@@ -214,7 +258,7 @@ const PORTAL_DATA = {
         ca: "Descobreix les opcions de pesca de silurs i carpes amb Dave, líder de captures de 19+ anys, lloguer i reserves.",
         es: "Descubre las opciones de pesca de siluros y carpas con Dave, tabla de capturas de 19+ años, alquiler y reservas."
       },
-      image: "assets/house/riverview.png",
+      image: "assets/house/house.png",
       link: "https://www.millhousefishingclub.co.uk/",
       linkText: {
         en: "Visit Official Website ↗",
@@ -228,9 +272,9 @@ const PORTAL_DATA = {
       badge: "VILLA & POOL",
       badgeClass: "badge-green",
       title: {
-        en: "River House Villa & Private Pool",
-        ca: "Vila i Piscina Privada de River House",
-        es: "Villa y Piscina Privada de River House"
+        en: "Finca Alessandra Villa & Private Pool",
+        ca: "Vila i Piscina Privada de Finca Alessandra",
+        es: "Villa y Piscina Privada de Finca Alessandra"
       },
       description: {
         en: "Relax at our private sunny villa with pool, sun loungers, and balcony views overlooking the Ebro River.",
@@ -243,6 +287,15 @@ const PORTAL_DATA = {
         "assets/house/house2.png",
         "assets/house/house3.png",
         "assets/house/pool.png",
+        "assets/house/poolsideview.png",
+        "assets/house/sunsetbalcony.png",
+        "assets/house/viewtea.png",
+        "assets/house/kayakview.png",
+        "assets/house/rodssunset.png",
+        "assets/house/nightimepoolstars.png",
+        "assets/house/sunset2.png",
+        "assets/house/drivehousepic.png",
+        "assets/house/vilanight.png",
         "assets/house/riverview.png"
       ],
       details: {
@@ -293,7 +346,7 @@ const PORTAL_DATA = {
         es: "Instagram de Dave (@dave.carp.cat)"
       },
       description: {
-        en: "Follow @dave.carp.cat on Instagram for real daily catches, giant Ebro catfish photos, and River House stories.",
+        en: "Follow @dave.carp.cat on Instagram for real daily catches, giant Ebro catfish photos, and Finca Alessandra stories.",
         ca: "Segueix @dave.carp.cat a Instagram per veure captures diàries de silurs del Riu Ebre.",
         es: "Sigue a @dave.carp.cat en Instagram para ver capturas diarias de siluros del Río Ebro."
       },
@@ -334,9 +387,9 @@ const PORTAL_DATA = {
       badge: "GUEST INFO",
       badgeClass: "badge-orange",
       title: {
-        en: "Local Directory & Route Maps",
-        ca: "Directori Local i Mapes de Ruta",
-        es: "Directorio Local y Mapas de Ruta"
+        en: "Dave's Local Directory & Route Maps",
+        ca: "Directori Local i Mapes de Ruta de Dave",
+        es: "Directorio Local y Mapas de Ruta de Dave"
       },
       description: {
         en: "Local medical (CAP & Hospital), emergency services, supermarkets (Mercadona, Esclat, BonÀrea, Spar), and Dave's favorite tapas bars — with walking & driving routes right from the villa.",
@@ -349,6 +402,29 @@ const PORTAL_DATA = {
         en: "View Local Directory",
         ca: "Veure Directori Local",
         es: "Ver Directorio Local"
+      }
+    },
+    {
+      id: "jane-menu-card",
+      category: "guest",
+      badge: "MENU",
+      badgeClass: "badge-teal",
+      title: {
+        en: "Jane's Menu",
+        ca: "Menú de Jane",
+        es: "Menú de Jane"
+      },
+      description: {
+        en: "Tap to see the home-made menu board, including traditional, Catalan and pub grub dishes.",
+        ca: "Toca per veure el menú casolà amb plats tradicionals, catalans i de pub.",
+        es: "Toca para ver el menú casero con platos tradicionales, catalanes y de pub."
+      },
+      image: "assets/images/breakfast.png",
+      actionType: "openMenuModal",
+      linkText: {
+        en: "View Jane's Menu",
+        ca: "Veure el menú de Jane",
+        es: "Ver el menú de Jane"
       }
     }
   ],
@@ -369,7 +445,7 @@ const PORTAL_DATA = {
         es: "Navega en kayak por el río Ebro desde Móra la Nova hasta Miravet o Benifallet. Disfruta de la naturaleza y las aguas tranquilas."
       },
       image: "assets/poi/kayak.png",
-      distance: "Direct access from River House",
+      distance: "Direct access from Finca Alessandra",
       duration: "2 - 4 Hours",
       recommended: "Kayakers, Nature Lovers, Families",
       tip: "Dave's Tip: Take water and sunscreen! The 2-hour paddle down to Miravet is smooth, easy, and stunning.",
@@ -392,7 +468,7 @@ const PORTAL_DATA = {
       distance: "1.2 km (15 min walk / 3 min drive)",
       duration: "1.5 - 2 Hours",
       recommended: "Families, Train Enthusiasts, Cultural Visitors",
-      tip: "Dave's Tip: Great for kids and train lovers. It is just a 15-minute stroll from River House in town.",
+      tip: "Dave's Tip: Great for kids and train lovers. It is just a 15-minute stroll from Finca Alessandra in town.",
       mapUrl: "https://maps.google.com/?q=Museu+del+Ferrocarril+a+Mora+la+Nova"
     },
     {
@@ -550,7 +626,7 @@ const PORTAL_DATA = {
       year: "02/08/2021",
       angler: "Rob",
       location: "River Ebro — Villa swim",
-      story: "After a four year wait, we have a new villa record catfish. Rob caught a 149lb monster.",
+      story: "After a four year wait, we have a new villa record catfish. Gordon caught a 149lb monster.",
       image: "assets/fish-pics/catpb.png"
     },
     {
@@ -584,9 +660,9 @@ const PORTAL_DATA = {
       name: "Our club record Carp.",
       weight: "48lb",
       year: "Villa Record",
-      angler: "Villa Guest",
+      angler: "Gordon",
       location: "Wood Swim",
-      story: "Our club record carp. The largest carp caught from our swims, landed from the wood swim and weighed in at 48lb.",
+      story: "Our club record carp. Gordon landed the largest carp caught from our swims, from the wood swim at 48lb.",
       image: "assets/fish-pics/carppb.png"
     },
     {

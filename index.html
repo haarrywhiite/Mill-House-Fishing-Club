@@ -38,13 +38,21 @@
   <nav class="top-nav" aria-label="Main navigation">
     <div class="container nav-wrapper">
       <a href="#" class="brand-logo" id="nav-brand-logo" aria-label="Mill House Fishing Club — Home">
-        <i class="fa-solid fa-water" aria-hidden="true"></i>
+        <img src="assets/catfishico.png" alt="" aria-hidden="true" class="brand-mark">
         <span class="brand-name">Mill House Fishing Club</span>
       </a>
-      <div class="lang-selector" role="group" aria-label="Language selector">
-        <button class="lang-btn active" data-lang="en" aria-label="English">EN</button>
-        <button class="lang-btn" data-lang="ca" aria-label="Català">CAT</button>
-        <button class="lang-btn" data-lang="es" aria-label="Español">ES</button>
+      <div class="nav-actions">
+        <div class="lang-selector" role="group" aria-label="Language selector">
+          <select class="lang-select" id="lang-select" aria-label="Language selector">
+            <option value="en">EN</option>
+            <option value="ca">CAT</option>
+            <option value="es">ES</option>
+          </select>
+        </div>
+        <button class="contact-nav-btn" id="btn-open-contact" type="button" aria-label="Open contact options">
+          <i class="fa-solid fa-comments" aria-hidden="true"></i>
+          <span id="btn-open-contact-text">Contact</span>
+        </button>
       </div>
     </div>
   </nav>
@@ -61,18 +69,6 @@
         </div>
         <h1 class="hero-title" id="hero-title">Mill House Fishing Club</h1>
         <p class="hero-subtitle" id="hero-subtitle">Guided Catfishing and Carp Fishing on the River Ebro</p>
-        <div class="hero-actions">
-          <a href="https://www.millhousefishingclub.co.uk/" target="_blank" rel="noopener" class="btn-primary"
-            id="btn-hero-official">
-            <i class="fa-solid fa-globe" aria-hidden="true"></i>
-            <span id="btn-hero-official-text">Official Fishing Website</span>
-          </a>
-          <a href="https://wa.me/34687156179" target="_blank" rel="noopener" class="btn-secondary"
-            id="btn-hero-whatsapp">
-            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-            <span id="btn-hero-whatsapp-text">Chat on WhatsApp</span>
-          </a>
-        </div>
       </div>
     </header>
 
@@ -109,19 +105,6 @@
       <!-- JS injects cards dynamically -->
     </section>
 
-    <!-- QR Code Generator -->
-    <section class="qr-section" aria-label="QR Code sharing">
-      <h2 id="qr-title">Share or Save QR Code</h2>
-      <p id="qr-subtitle">Scan or print this QR code to quickly open the Mill House Portal anytime on your phone.</p>
-      <div class="qr-container">
-        <div id="qrcode" role="img" aria-label="QR Code linking to this portal"></div>
-        <button class="btn-primary" id="btn-print-qr">
-          <i class="fa-solid fa-print" aria-hidden="true"></i>
-          <span id="btn-print-qr-text">Print QR Code Stand</span>
-        </button>
-      </div>
-    </section>
-
     <!-- Footer -->
     <footer class="site-footer">
       <p id="footer-text">Mill House Fishing Club — Móra la Nova, Catalonia. Family run for guests &amp; visitors.</p>
@@ -140,7 +123,8 @@
             <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
             <span id="poi-modal-title-text">Dave's Local POIs Guide</span>
           </h3>
-          <p id="poi-modal-subtitle">Select an attraction below to view personal tips, details, and Google Maps directions</p>
+          <p id="poi-modal-subtitle">Select an attraction below to view personal tips, details, and Google Maps
+            directions</p>
         </div>
         <button class="modal-close-btn" id="poi-hub-close" aria-label="Close"><i class="fa-solid fa-xmark"
             aria-hidden="true"></i></button>
@@ -190,25 +174,30 @@
   </div>
 
   <!-- Emergency & Local Directory Modal -->
-  <div class="modal-overlay" id="emergency-modal" role="dialog" aria-modal="true" aria-labelledby="lbl-emergency-modal-title">
+  <div class="modal-overlay" id="emergency-modal" role="dialog" aria-modal="true"
+    aria-labelledby="lbl-emergency-modal-title">
     <div class="modal-content modal-lg">
       <div class="modal-header-nav">
         <div>
           <h3 id="lbl-emergency-modal-title">
-            <i class="fa-solid fa-hospital-user" aria-hidden="true" style="color: var(--accent-gold); margin-right: 8px;"></i>
+            <i class="fa-solid fa-hospital-user" aria-hidden="true"
+              style="color: var(--accent-gold); margin-right: 8px;"></i>
             Local Directory &amp; Routes
           </h3>
-          <p id="lbl-emergency-subtitle">Medical services, emergency numbers, shops &amp; Dave's favorite local spots with walking and driving routes from River House</p>
+          <p id="lbl-emergency-subtitle">Medical services, emergency numbers, shops &amp; Dave's favorite local spots
+            with walking and driving routes from Finca Alessandra</p>
         </div>
-        <button class="modal-close-btn" id="emergency-modal-close" aria-label="Close guest directory"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        <button class="modal-close-btn" id="emergency-modal-close" aria-label="Close guest directory"><i
+            class="fa-solid fa-xmark" aria-hidden="true"></i></button>
       </div>
 
       <div class="modal-body directory-modal-body">
-        
+
         <!-- Medical & Healthcare (Foldable Accordion) -->
         <div class="directory-accordion-item directory-accordion-item--medical active">
           <div class="directory-cat-header" role="button" aria-expanded="true">
-            <span class="cat-title-text"><i class="fa-solid fa-notes-medical" aria-hidden="true" style="color: #e11d48;"></i> Medical &amp; Healthcare</span>
+            <span class="cat-title-text"><i class="fa-solid fa-notes-medical" aria-hidden="true"
+                style="color: #e11d48;"></i> Medical &amp; Healthcare</span>
             <i class="fa-solid fa-chevron-down dir-chevron" aria-hidden="true"></i>
           </div>
           <div class="directory-cat-content">
@@ -223,10 +212,12 @@
                   <p>Tel: <a href="tel:+34977401818">+34 977 40 18 18</a> • Carrer Major, 11 (Town Center)</p>
                 </div>
                 <div class="nav-action-btns">
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=CAP+Mora+la+Nova&travelmode=walking" target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=CAP+Mora+la+Nova&travelmode=walking"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from Finca Alessandra">
                     <i class="fa-solid fa-person-walking" aria-hidden="true"></i> Walk (9m)
                   </a>
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=CAP+Mora+la+Nova&travelmode=driving" target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=CAP+Mora+la+Nova&travelmode=driving"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from Finca Alessandra">
                     <i class="fa-solid fa-car" aria-hidden="true"></i> Drive (2m)
                   </a>
                 </div>
@@ -238,19 +229,23 @@
                     <strong>Hospital Comarcal de Móra d'Ebre (24h Hospital)</strong>
                     <span class="dist-badge"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 2.8 km</span>
                   </div>
-                  <p>Tel: <a href="tel:+34977401551">+34 977 40 15 51</a> • 24h Emergency Ward (Across the Ebro bridge)</p>
+                  <p>Tel: <a href="tel:+34977401551">+34 977 40 15 51</a> • 24h Emergency Ward (Across the Ebro bridge)
+                  </p>
                 </div>
                 <div class="nav-action-btns">
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Hospital+Comarcal+de+Mora+dEbre&travelmode=walking" target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Hospital+Comarcal+de+Mora+dEbre&travelmode=walking"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from Finca Alessandra">
                     <i class="fa-solid fa-person-walking" aria-hidden="true"></i> Walk (35m)
                   </a>
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Hospital+Comarcal+de+Mora+dEbre&travelmode=driving" target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Hospital+Comarcal+de+Mora+dEbre&travelmode=driving"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from Finca Alessandra">
                     <i class="fa-solid fa-car" aria-hidden="true"></i> Drive (5m)
                   </a>
                 </div>
               </li>
               <li class="directory-item">
-                <div class="dir-item-icon"><i class="fa-solid fa-prescription-bottle-medical" aria-hidden="true"></i></div>
+                <div class="dir-item-icon"><i class="fa-solid fa-prescription-bottle-medical" aria-hidden="true"></i>
+                </div>
                 <div class="dir-item-info">
                   <div class="dir-header-row">
                     <strong>Farmàcia Móra la Nova &amp; 24h Duty Pharmacy</strong>
@@ -259,10 +254,12 @@
                   <p>Tel: <a href="tel:+34977400332">+34 977 40 03 32</a> • Carrer Major 2 (Town Center)</p>
                 </div>
                 <div class="nav-action-btns">
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Farmacia+Mora+la+Nova&travelmode=walking" target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Farmacia+Mora+la+Nova&travelmode=walking"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from Finca Alessandra">
                     <i class="fa-solid fa-person-walking" aria-hidden="true"></i> Walk (8m)
                   </a>
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Farmacia+Mora+la+Nova&travelmode=driving" target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Farmacia+Mora+la+Nova&travelmode=driving"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from Finca Alessandra">
                     <i class="fa-solid fa-car" aria-hidden="true"></i> Drive (2m)
                   </a>
                 </div>
@@ -274,7 +271,8 @@
         <!-- Police, Fire & Emergency Numbers (Foldable Accordion) -->
         <div class="directory-accordion-item directory-accordion-item--emergency active">
           <div class="directory-cat-header" role="button" aria-expanded="true">
-            <span class="cat-title-text"><i class="fa-solid fa-shield-halved" aria-hidden="true" style="color: #d97706;"></i> Police, Fire &amp; Emergency Numbers</span>
+            <span class="cat-title-text"><i class="fa-solid fa-shield-halved" aria-hidden="true"
+                style="color: #d97706;"></i> Police, Fire &amp; Emergency Numbers</span>
             <i class="fa-solid fa-chevron-down dir-chevron" aria-hidden="true"></i>
           </div>
           <div class="directory-cat-content">
@@ -296,13 +294,16 @@
                     <strong>Local Police (Guàrdia Urbana &amp; Mossos d'Esquadra)</strong>
                     <span class="dist-badge"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 1.5 km</span>
                   </div>
-                  <p>Emergency: <a href="tel:112">112</a> • Local Station: <a href="tel:+34977400012">+34 977 40 00 12</a></p>
+                  <p>Emergency: <a href="tel:112">112</a> • Local Station: <a href="tel:+34977400012">+34 977 40 00
+                      12</a></p>
                 </div>
                 <div class="nav-action-btns">
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Police+Station+Mora+dEbre&travelmode=walking" target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Police+Station+Mora+dEbre&travelmode=walking"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from Finca Alessandra">
                     <i class="fa-solid fa-person-walking" aria-hidden="true"></i> Walk (18m)
                   </a>
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Police+Station+Mora+dEbre&travelmode=driving" target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Police+Station+Mora+dEbre&travelmode=driving"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from Finca Alessandra">
                     <i class="fa-solid fa-car" aria-hidden="true"></i> Drive (3m)
                   </a>
                 </div>
@@ -317,10 +318,12 @@
                   <p>Call: <a href="tel:112">112</a> or <a href="tel:085">085</a></p>
                 </div>
                 <div class="nav-action-btns">
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Bombers+Mora+dEbre&travelmode=walking" target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Bombers+Mora+dEbre&travelmode=walking"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from Finca Alessandra">
                     <i class="fa-solid fa-person-walking" aria-hidden="true"></i> Walk (22m)
                   </a>
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Bombers+Mora+dEbre&travelmode=driving" target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Bombers+Mora+dEbre&travelmode=driving"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from Finca Alessandra">
                     <i class="fa-solid fa-car" aria-hidden="true"></i> Drive (3m)
                   </a>
                 </div>
@@ -332,7 +335,8 @@
         <!-- Supermarkets & Food Shops (Foldable Accordion) -->
         <div class="directory-accordion-item directory-accordion-item--supermarkets active">
           <div class="directory-cat-header" role="button" aria-expanded="true">
-            <span class="cat-title-text"><i class="fa-solid fa-cart-shopping" aria-hidden="true" style="color: #059669;"></i> Supermarkets &amp; Food Shops</span>
+            <span class="cat-title-text"><i class="fa-solid fa-cart-shopping" aria-hidden="true"
+                style="color: #059669;"></i> Supermarkets &amp; Food Shops</span>
             <i class="fa-solid fa-chevron-down dir-chevron" aria-hidden="true"></i>
           </div>
           <div class="directory-cat-content">
@@ -347,10 +351,12 @@
                   <p>Large supermarket • Fresh fish, bakery, meats &amp; full groceries</p>
                 </div>
                 <div class="nav-action-btns">
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Mercadona+Mora+dEbre&travelmode=walking" target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Mercadona+Mora+dEbre&travelmode=walking"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from Finca Alessandra">
                     <i class="fa-solid fa-person-walking" aria-hidden="true"></i> Walk (30m)
                   </a>
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Mercadona+Mora+dEbre&travelmode=driving" target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Mercadona+Mora+dEbre&travelmode=driving"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from Finca Alessandra">
                     <i class="fa-solid fa-car" aria-hidden="true"></i> Drive (4m)
                   </a>
                 </div>
@@ -365,10 +371,12 @@
                   <p>Quality local meats, cold cuts, prepared meals &amp; groceries (Across the bridge)</p>
                 </div>
                 <div class="nav-action-btns">
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=bonArea+Mora+dEbre&travelmode=walking" target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=bonArea+Mora+dEbre&travelmode=walking"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from Finca Alessandra">
                     <i class="fa-solid fa-person-walking" aria-hidden="true"></i> Walk (31m)
                   </a>
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=bonArea+Mora+dEbre&travelmode=driving" target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=bonArea+Mora+dEbre&travelmode=driving"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from Finca Alessandra">
                     <i class="fa-solid fa-car" aria-hidden="true"></i> Drive (4m)
                   </a>
                 </div>
@@ -383,10 +391,12 @@
                   <p>Large regional hypermarket with fresh local Catalan produce &amp; fish counter in town</p>
                 </div>
                 <div class="nav-action-btns">
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Esclat+Mora+la+Nova&travelmode=walking" target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Esclat+Mora+la+Nova&travelmode=walking"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from Finca Alessandra">
                     <i class="fa-solid fa-person-walking" aria-hidden="true"></i> Walk (11m)
                   </a>
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Esclat+Mora+la+Nova&travelmode=driving" target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Esclat+Mora+la+Nova&travelmode=driving"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from Finca Alessandra">
                     <i class="fa-solid fa-car" aria-hidden="true"></i> Drive (2m)
                   </a>
                 </div>
@@ -401,10 +411,12 @@
                   <p>Convenient local supermarket for daily groceries &amp; fresh daily bread</p>
                 </div>
                 <div class="nav-action-btns">
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Supermercat+Spar+Mora+la+Nova&travelmode=walking" target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Supermercat+Spar+Mora+la+Nova&travelmode=walking"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
                     <i class="fa-solid fa-person-walking" aria-hidden="true"></i> Walk (10m)
                   </a>
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Supermercat+Spar+Mora+la+Nova&travelmode=driving" target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Supermercat+Spar+Mora+la+Nova&travelmode=driving"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
                     <i class="fa-solid fa-car" aria-hidden="true"></i> Drive (2m)
                   </a>
                 </div>
@@ -416,7 +428,8 @@
         <!-- Restaurants & Local Bars (Foldable Accordion) -->
         <div class="directory-accordion-item directory-accordion-item--restaurants active">
           <div class="directory-cat-header" role="button" aria-expanded="true">
-            <span class="cat-title-text"><i class="fa-solid fa-utensils" aria-hidden="true" style="color: #7c3aed;"></i> Restaurants &amp; Local Bars</span>
+            <span class="cat-title-text"><i class="fa-solid fa-utensils" aria-hidden="true" style="color: #7c3aed;"></i>
+              Restaurants &amp; Local Bars</span>
             <i class="fa-solid fa-chevron-down dir-chevron" aria-hidden="true"></i>
           </div>
           <div class="directory-cat-content">
@@ -431,10 +444,12 @@
                   <p>★ Local Favorite! Great tapas, daily lunch menus &amp; cold beers right in town.</p>
                 </div>
                 <div class="nav-action-btns">
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Bar+Dana+Mora+la+Nova&travelmode=walking" target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Bar+Dana+Mora+la+Nova&travelmode=walking"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
                     <i class="fa-solid fa-person-walking" aria-hidden="true"></i> Walk (9m)
                   </a>
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Bar+Dana+Mora+la+Nova&travelmode=driving" target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Bar+Dana+Mora+la+Nova&travelmode=driving"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
                     <i class="fa-solid fa-car" aria-hidden="true"></i> Drive (2m)
                   </a>
                 </div>
@@ -449,10 +464,12 @@
                   <p>Quality grilled meats, traditional rice dishes &amp; Catalan tapas right in Móra la Nova.</p>
                 </div>
                 <div class="nav-action-btns">
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Can+Palomo+2.0+Mora+la+Nova&travelmode=walking" target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Can+Palomo+2.0+Mora+la+Nova&travelmode=walking"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
                     <i class="fa-solid fa-person-walking" aria-hidden="true"></i> Walk (10m)
                   </a>
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Can+Palomo+2.0+Mora+la+Nova&travelmode=driving" target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Can+Palomo+2.0+Mora+la+Nova&travelmode=driving"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
                     <i class="fa-solid fa-car" aria-hidden="true"></i> Drive (2m)
                   </a>
                 </div>
@@ -467,10 +484,12 @@
                   <p>Great local daily lunches, grilled meats &amp; friendly neighborhood atmosphere.</p>
                 </div>
                 <div class="nav-action-btns">
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Bar+Restaurant+Can+Subirats+Mora+la+Nova&travelmode=walking" target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Bar+Restaurant+Can+Subirats+Mora+la+Nova&travelmode=walking"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
                     <i class="fa-solid fa-person-walking" aria-hidden="true"></i> Walk (11m)
                   </a>
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Bar+Restaurant+Can+Subirats+Mora+la+Nova&travelmode=driving" target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=Bar+Restaurant+Can+Subirats+Mora+la+Nova&travelmode=driving"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
                     <i class="fa-solid fa-car" aria-hidden="true"></i> Drive (2m)
                   </a>
                 </div>
@@ -485,10 +504,12 @@
                   <p>Popular local spot serving delicious tapas, hot sandwiches &amp; daily dishes.</p>
                 </div>
                 <div class="nav-action-btns">
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=El+Raco+del+Bon+Mos+Mora+la+Nova&travelmode=walking" target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=El+Raco+del+Bon+Mos+Mora+la+Nova&travelmode=walking"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--walk" title="Walk from River House">
                     <i class="fa-solid fa-person-walking" aria-hidden="true"></i> Walk (9m)
                   </a>
-                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=El+Raco+del+Bon+Mos+Mora+la+Nova&travelmode=driving" target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
+                  <a href="https://www.google.com/maps/dir/?api=1&origin=41.10724080837008,0.6393540520028381&destination=El+Raco+del+Bon+Mos+Mora+la+Nova&travelmode=driving"
+                    target="_blank" rel="noopener" class="nav-btn nav-btn--drive" title="Drive from River House">
                     <i class="fa-solid fa-car" aria-hidden="true"></i> Drive (2m)
                   </a>
                 </div>
@@ -500,7 +521,9 @@
         <!-- Local Festivities (Foldable Accordion) -->
         <div class="directory-accordion-item directory-accordion-item--festivities active">
           <div class="directory-cat-header" role="button" aria-expanded="true">
-            <span class="cat-title-text"><i class="fa-solid fa-calendar-days" aria-hidden="true" style="color: #dc2626;"></i> <span id="local-festivities-heading">Local Festivities &amp; Dates</span></span>
+            <span class="cat-title-text"><i class="fa-solid fa-calendar-days" aria-hidden="true"
+                style="color: #dc2626;"></i> <span id="local-festivities-heading">Local Festivities &amp;
+                Dates</span></span>
             <i class="fa-solid fa-chevron-down dir-chevron" aria-hidden="true"></i>
           </div>
           <div class="directory-cat-content">
@@ -510,9 +533,12 @@
                 <div class="dir-item-info">
                   <div class="dir-header-row">
                     <strong id="local-festivities-title">Móra la Nova Festa Major 2026</strong>
-                    <span class="dist-badge"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 25 Jul – 3 Aug</span>
+                    <span class="dist-badge"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 25 Jul – 3
+                      Aug</span>
                   </div>
-                  <p id="local-festivities-detail">25 July – 3 August 2026. The closing fireworks display is on Monday 3 August, with music, family activities, food, parades and local celebrations throughout the festival.</p>
+                  <p id="local-festivities-detail">25 July – 3 August 2026. The closing fireworks display is on Monday 3
+                    August, with music, family activities, food, parades and local celebrations throughout the festival.
+                  </p>
                 </div>
               </li>
               <li class="directory-item local-event--tivissa">
@@ -522,7 +548,8 @@
                     <strong data-town-event-title="tivissa">Tivissa Festa Major de Sant Jaume 2026</strong>
                     <span class="dist-badge"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 17–26 Jul</span>
                   </div>
-                  <p data-town-event-detail="tivissa">Ten days of music, the traditional Dansa de Tivissa, correfoc, concerts and family events.</p>
+                  <p data-town-event-detail="tivissa">Ten days of music, the traditional Dansa de Tivissa, correfoc,
+                    concerts and family events.</p>
                 </div>
               </li>
               <li class="directory-item local-event--garcia">
@@ -530,9 +557,11 @@
                 <div class="dir-item-info">
                   <div class="dir-header-row">
                     <strong data-town-event-title="garcia">Garcia Festa Major 2026</strong>
-                    <span class="dist-badge"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 30 Jul–16 Aug</span>
+                    <span class="dist-badge"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 30 Jul–16
+                      Aug</span>
                   </div>
-                  <p data-town-event-detail="garcia">Local festivities with music, the Fira dels Sentits, a correfoc, family activities and the traditional river kayak descent.</p>
+                  <p data-town-event-detail="garcia">Local festivities with music, the Fira dels Sentits, a correfoc,
+                    family activities and the traditional river kayak descent.</p>
                 </div>
               </li>
               <li class="directory-item local-event--mora-ebre">
@@ -542,7 +571,8 @@
                     <strong data-town-event-title="mora-ebre">Móra d’Ebre Festa Major 2026</strong>
                     <span class="dist-badge"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 17–26 Aug</span>
                   </div>
-                  <p data-town-event-detail="mora-ebre">A ten-day celebration with concerts, correfoc, the Festa del Riu and a grand fireworks display.</p>
+                  <p data-town-event-detail="mora-ebre">A ten-day celebration with concerts, correfoc, the Festa del Riu
+                    and a grand fireworks display.</p>
                 </div>
               </li>
               <li class="directory-item local-event--fira">
@@ -552,7 +582,8 @@
                     <strong data-town-event-title="fira">Fira Agrícola, Ramadera i Industrial — Móra la Nova</strong>
                     <span class="dist-badge"><i class="fa-solid fa-calendar" aria-hidden="true"></i> 22–25 Oct</span>
                   </div>
-                  <p data-town-event-detail="fira">A major October fair with agriculture, livestock, machinery, trade stands and a fairground for all ages.</p>
+                  <p data-town-event-detail="fira">A major October fair with agriculture, livestock, machinery, trade
+                    stands and a fairground for all ages.</p>
                 </div>
               </li>
             </ul>
@@ -563,31 +594,181 @@
     </div>
   </div>
 
+  <!-- Contact Modal -->
+  <div class="modal-overlay" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+    <div class="modal-content modal-md">
+      <div class="modal-header-nav">
+        <div>
+          <h3 id="contact-modal-title"><i class="fa-solid fa-comments" aria-hidden="true"></i> Contact</h3>
+          <p id="contact-modal-subtitle">Quick ways to reach us</p>
+        </div>
+        <button class="modal-close-btn" id="contact-modal-close" aria-label="Close"><i class="fa-solid fa-xmark"
+            aria-hidden="true"></i></button>
+      </div>
+      <div class="modal-body contact-modal-body">
+        <div class="contact-action-grid">
+          <a class="contact-action-card" href="https://www.millhousefishingclub.co.uk/" target="_blank" rel="noopener">
+            <i class="fa-solid fa-globe" aria-hidden="true"></i>
+            <span>Official Website</span>
+          </a>
+          <a class="contact-action-card" href="https://wa.me/34687156179" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            <span>WhatsApp</span>
+          </a>
+          <a class="contact-action-card" href="tel:+34687156179">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <span>Call Us</span>
+          </a>
+        </div>
+        <section class="qr-section qr-section--modal" aria-label="QR Code sharing">
+          <h2 id="qr-title">Share or Save QR Code</h2>
+          <p id="qr-subtitle">Scan or print this QR code to quickly open the Mill House Portal anytime on your phone.
+          </p>
+          <div class="qr-container">
+            <div id="qrcode" role="img" aria-label="QR Code linking to this portal"></div>
+            <button class="btn-primary" id="btn-print-qr" type="button">
+              <i class="fa-solid fa-print" aria-hidden="true"></i>
+              <span id="btn-print-qr-text">Print QR Code Stand</span>
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jane's Menu Modal -->
+  <div class="modal-overlay" id="menu-modal" role="dialog" aria-modal="true" aria-labelledby="menu-modal-title">
+    <div class="modal-content modal-lg">
+      <div class="modal-header-nav">
+        <div>
+          <h3 id="menu-modal-title"><i class="fa-solid fa-utensils" aria-hidden="true"></i> Jane's Menu</h3>
+          <p id="menu-modal-subtitle">Homemade dishes from the board in the house.</p>
+        </div>
+        <button class="modal-close-btn" id="menu-modal-close" aria-label="Close"><i class="fa-solid fa-xmark"
+            aria-hidden="true"></i></button>
+      </div>
+      <div class="modal-body menu-modal-body">
+        <div class="menu-board">
+          <div class="menu-board-section">
+            <h4>Traditional</h4>
+            <ul>
+              <li><strong>1/2 Roast Chicken</strong><span>Homemade chips and salad or roast potatoes, seasonal
+                  vegetables and gravy</span></li>
+              <li><strong>Sausage and Chips</strong><span>Homemade chips and beans or mashed potatoes, seasonal
+                  vegetables and gravy</span></li>
+              <li><strong>Homemade Pie</strong><span>Mince and onion, chicken and mushroom or chicken and leek. Served
+                  with homemade chips, peas and gravy</span></li>
+              <li><strong>Cottage Pie</strong><span>Served with seasonal vegetables and gravy</span></li>
+              <li><strong>Pulled Pork</strong><span>Served with fresh bread rolls, potato wedges or chips and homemade
+                  coleslaw</span></li>
+              <li><strong>Toad in the Hole</strong><span>Served with roast potatoes, vegetables and gravy</span></li>
+              <li><strong>Baguettes</strong><span>Filled fresh baguettes at your request, with cheese, ham, tuna, egg
+                  mayo, coronation chicken or prawn salad</span></li>
+            </ul>
+          </div>
+          <div class="menu-board-section menu-board-section--dark">
+            <h4>Catalan</h4>
+            <ul>
+              <li><strong>Paella</strong><span>Choice of seafood, chicken or vegetarian paella</span></li>
+              <li><strong>Fideua</strong><span>Made with fine pasta and seafood</span></li>
+              <li><strong>Tapas</strong><span>A selection of mussels, garlic prawns, patatas bravas and calamari</span>
+              </li>
+              <li><strong>Oven Baked Sea Bream</strong><span>Served with new potatoes and seasonal vegetables</span>
+              </li>
+              <li><strong>Lentil and Chorizo Stew</strong><span>Served with crusty bread</span></li>
+              <li><strong>Salads</strong><span>Goat’s cheese, seafood (tuna and prawn), Caesar chicken or served with
+                  jacket potato</span></li>
+              <li class="menu-board-price">Prices include dessert, wine or beer - 16.50 euros per head, two choices per
+                sitting where possible please</li>
+            </ul>
+          </div>
+          <div class="menu-board-section">
+            <h4>Pub Grub</h4>
+            <ul>
+              <li><strong>Lasagne</strong><span>Served with homemade chips, salad and garlic bread</span></li>
+              <li><strong>Spaghetti Bolognese</strong><span>Served with salad and garlic bread</span></li>
+              <li><strong>Chilli con Carne</strong><span>Served with rice or jacket potato</span></li>
+              <li><strong>Curry</strong><span>Homemade butter chicken curry or vegetable curry with rice and onion
+                  bhajis</span></li>
+              <li><strong>Hunter’s Chicken</strong><span>Chicken breast wrapped in bacon with BBQ sauce, served with
+                  homemade chips and coleslaw</span></li>
+              <li><strong>All Day Breakfast</strong><span>Two English sausages, two rashers of bacon, fried or scrambled
+                  eggs, mushrooms, tomatoes and beans. Choice of toast or fried bread. 10 euros</span></li>
+              <li><strong>Breakfast Baguette</strong><span>Any combo of sausage, bacon and egg. 6 euros</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Us Modal -->
+  <div class="modal-overlay" id="about-modal" role="dialog" aria-modal="true" aria-labelledby="about-modal-title">
+    <div class="modal-content modal-lg">
+      <div class="modal-header-nav">
+        <div>
+          <h3 id="about-modal-title"><i class="fa-solid fa-house-chimney-user" aria-hidden="true"></i> About Us</h3>
+          <p id="about-modal-subtitle">House notes, guest guidance and practical advice.</p>
+        </div>
+        <button class="modal-close-btn" id="about-modal-close" aria-label="Close"><i class="fa-solid fa-xmark"
+            aria-hidden="true"></i></button>
+      </div>
+      <div class="modal-body about-modal-body">
+        <div class="about-notes-grid">
+          <article class="about-note-card">
+            <h4>A little peace of heaven</h4>
+            <p>Do not drink the tap water, it is OK for cooking.</p>
+            <p>We have a septic tank, so please only use the toilets for poo, pee and paper. All other items go in the
+              bins provided in each bathroom.</p>
+            <p>No bleach products to be used in the villa.</p>
+          </article>
+          <article class="about-note-card">
+            <h4>House guidance</h4>
+            <p>Please use the swimming pool towels around the pool, not the white bathroom towels.</p>
+            <p>Keep all doors and windows closed at night unless you would like the company of the local mosquitoes.</p>
+            <p>Please close all umbrellas by the pool when not in use and remove all inflatables from the pool at night.
+            </p>
+          </article>
+          <article class="about-note-card">
+            <h4>Useful extras</h4>
+            <p>We can reserve a table for you at the local restaurants.</p>
+            <p>If you need help or advice with anything, do not hesitate to call or WhatsApp us on <a
+                href="tel:+34687156179">0034 687156179</a>.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Catch Records Modal -->
   <div class="modal-overlay" id="villa-modal" role="dialog" aria-modal="true" aria-labelledby="villa-modal-title">
     <div class="modal-content modal-lg">
       <div class="modal-header-nav">
         <div>
-          <h3 id="villa-modal-title"><i class="fa-solid fa-house" aria-hidden="true"></i> River House Villa &amp; Private Pool</h3>
-          <p id="villa-modal-subtitle">A look around River House, its river views and private pool.</p>
+          <h3 id="villa-modal-title"><i class="fa-solid fa-house" aria-hidden="true"></i> Finca Alessandra Villa &amp;
+            Private Pool</h3>
+          <p id="villa-modal-subtitle">A look around Finca Alessandra, its river views and private pool.</p>
         </div>
-        <button class="modal-close-btn" id="villa-modal-close" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        <button class="modal-close-btn" id="villa-modal-close" aria-label="Close"><i class="fa-solid fa-xmark"
+            aria-hidden="true"></i></button>
       </div>
       <div class="modal-body villa-gallery-body">
         <div class="villa-carousel" aria-live="polite">
-          <button class="carousel-control carousel-control--prev" id="villa-carousel-prev" type="button" aria-label="Previous villa photo">
+          <button class="carousel-control carousel-control--prev" id="villa-carousel-prev" type="button"
+            aria-label="Previous villa photo">
             <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
           </button>
           <div class="villa-carousel-frame">
-            <img id="villa-carousel-image" src="assets/house/house.png" alt="River House exterior" loading="lazy">
+            <img id="villa-carousel-image" src="assets/house/house.png" alt="Finca Alessandra exterior" loading="lazy">
           </div>
-          <button class="carousel-control carousel-control--next" id="villa-carousel-next" type="button" aria-label="Next villa photo">
+          <button class="carousel-control carousel-control--next" id="villa-carousel-next" type="button"
+            aria-label="Next villa photo">
             <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
           </button>
         </div>
         <div class="villa-carousel-caption">
           <span id="villa-carousel-counter">1 / 5</span>
-          <p id="villa-carousel-text">River House exterior</p>
+          <p id="villa-carousel-text">Finca Alessandra exterior</p>
         </div>
       </div>
     </div>
@@ -615,7 +796,8 @@
       <!-- Annual Catch Reports Accordion -->
       <div class="catch-reports-section">
         <h4 class="reports-header" id="btn-toggle-reports" role="button" aria-expanded="false" tabindex="0">
-          <span><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span id="annual-reports-title">Annual Catch Reports</span></span>
+          <span><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span id="annual-reports-title">Annual Catch
+              Reports</span></span>
           <i class="fa-solid fa-chevron-down" id="reports-chevron" aria-hidden="true"></i>
         </h4>
         <div class="reports-accordion-wrapper" id="reports-accordion-wrapper">
